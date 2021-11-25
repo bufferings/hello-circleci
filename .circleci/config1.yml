@@ -1,13 +1,10 @@
 version: 2.1
 
 parameters:
-  manual:
-    type: boolean
-    default: false
-  file:
+  config:
     type: enum
-    enum: [config1, config2]
-    default: config1
+    enum: ["", config1, config2]
+    default: ""
 
 jobs:
   say-hello:
