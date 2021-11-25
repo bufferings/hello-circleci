@@ -21,6 +21,7 @@ jobs:
       - checkout
       - continuation/continue:
           configuration_path: .circleci/<< pipeline.parameters.file >>.yml
+          parameters: '{}'
 
 workflows:
   setup:
