@@ -6,13 +6,10 @@ orbs:
   continuation: circleci/continuation@0.1.2
 
 parameters:
-  manual:
-    type: boolean
-    default: false
-  file:
+  config:
     type: enum
-    enum: [config1, config2]
-    default: config1
+    enum: ["", config1, config2]
+    default: ""
 
 jobs:
   setup:
@@ -20,11 +17,10 @@ jobs:
     steps:
       - checkout
       - continuation/continue:
-          configuration_path: .circleci/<< pipeline.parameters.file >>.yml
-          parameters: '{"aaa":"bbb"}'
+          configuration_path: .circleci/<< pipeline.parameters.config >>.yml
 
 workflows:
   setup:
-    when: << pipeline.parameters.manual >>
+    when: << pipeline.parameters.config >>
     jobs:
       - setup
