@@ -5,11 +5,13 @@ setup: true
 orbs:
   continuation: circleci/continuation@0.1.2
 
+# 実行時に渡すパラメータ
+# config1 だったら config1.yml を、config2 だったら config2.yml を使って実行する
 parameters:
   config:
     type: enum
     enum: ["", config1, config2]
-    default: ""
+    default: "" # push 手動実行時以外は動かないようにしてみたかったので空文字をデフォルトにしておいた
 
 jobs:
   setup:
@@ -17,10 +19,12 @@ jobs:
     steps:
       - checkout
       - continuation/continue:
+          # ここでパラメータを使ってる
           configuration_path: .circleci/<< pipeline.parameters.config >>.yml
 
 workflows:
   setup:
+    # パラメータを指定したときだけ動くようにしといた
     when: << pipeline.parameters.config >>
     jobs:
       - setup
