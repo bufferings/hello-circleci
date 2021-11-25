@@ -19,7 +19,7 @@ jobs:
       #       ./generate-config > generated_config.yml
       - continuation/continue:
           # configuration_path: generated_config.yml # use newly generated config to continue
-          configuration_path: config1.yml # use newly generated config to continue
+          configuration_path: .circleci/config1.yml # use newly generated config to continue
 
 # our single workflow, that triggers the setup job defined above
 workflows:
