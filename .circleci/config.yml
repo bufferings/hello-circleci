@@ -22,9 +22,18 @@ jobs:
           # ここでパラメータを使ってる
           configuration_path: .circleci/<< pipeline.parameters.config >>.yml
 
+  runner-test:
+    machine: true
+    resource_class: bufferings/hello-runner
+    steps:
+      - run: echo "Hi I'm on Runners!"
+
 workflows:
   setup:
     # パラメータを指定したときだけ動くようにしといた
     when: << pipeline.parameters.config >>
     jobs:
       - setup
+  testing:
+    jobs:
+      - runner-test
