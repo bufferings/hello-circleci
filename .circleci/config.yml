@@ -23,7 +23,8 @@ jobs:
           configuration_path: .circleci/<< pipeline.parameters.config >>.yml
 
   runner-test:
-    machine: true
+    docker:
+      - image: cimg/base:2021.11
     resource_class: bufferings/hello-runner
     steps:
       - run: echo "Hi I'm on Runners!"
