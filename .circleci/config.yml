@@ -27,6 +27,7 @@ jobs:
     resource_class: bufferings/hello-runner
     steps:
       - run: echo "Hi I'm on Runners!"
+      - run: sleep 60
 
 workflows:
   setup:
